@@ -1,0 +1,31 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.androidmonitor'
+    compileSdk 34
+    defaultConfig {
+        applicationId "com.androidmonitor"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+    sourceSets { main { jniLibs.srcDirs = ['src/main/jniLibs'] } }
+    packagingOptions { jniLibs { keepDebugSymbols += ['**/*.so'] } }
+}
+dependencies {}
+
+// Force AAPT2 to run in process instead of daemon (Proot Fix)
+tasks.withType(com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask).configureEach {
+    it.doFirst {
+        // Disable AAPT2 daemon specifically for this task
+        System.setProperty("android.aapt2.daemon.enabled", "false")
+    }
+}
+
+android {
+    aaptOptions {
+        // Force AAPT2 to run in process instead of daemon
+        noCompress 'tflite'
+        cruncherEnabled = false
+    }
+}
