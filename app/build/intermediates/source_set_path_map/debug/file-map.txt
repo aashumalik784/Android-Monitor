@@ -1,8 +1,0 @@
-com.androidmonitor.app-pngs-0 /data/data/com.termux/files/home/AndroidMonitor/app/build/generated/res/pngs/debug
-com.androidmonitor.app-resValues-1 /data/data/com.termux/files/home/AndroidMonitor/app/build/generated/res/resValues/debug
-com.androidmonitor.app-rs-2 /data/data/com.termux/files/home/AndroidMonitor/app/build/generated/res/rs/debug
-com.androidmonitor.app-mergeDebugResources-3 /data/data/com.termux/files/home/AndroidMonitor/app/build/intermediates/incremental/debug/mergeDebugResources/merged.dir
-com.androidmonitor.app-mergeDebugResources-4 /data/data/com.termux/files/home/AndroidMonitor/app/build/intermediates/incremental/debug/mergeDebugResources/stripped.dir
-com.androidmonitor.app-merged_res-5 /data/data/com.termux/files/home/AndroidMonitor/app/build/intermediates/merged_res/debug
-com.androidmonitor.app-debug-6 /data/data/com.termux/files/home/AndroidMonitor/app/src/debug/res
-com.androidmonitor.app-main-7 /data/data/com.termux/files/home/AndroidMonitor/app/src/main/res

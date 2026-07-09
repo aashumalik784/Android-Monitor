@@ -1,30 +1,62 @@
-plugins { id 'com.android.application' }
+plugins {
+    id 'com.android.application'
+}
+
 android {
     namespace 'com.androidmonitor'
     compileSdk 34
+
     defaultConfig {
         applicationId "com.androidmonitor"
         minSdk 24
         targetSdk 34
         versionCode 1
         versionName "1.0"
+
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
+        }
     }
-    sourceSets { main { jniLibs.srcDirs = ['src/main/jniLibs'] } }
-    packagingOptions { jniLibs { keepDebugSymbols += ['**/*.so'] } }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.22.1"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
-dependencies {}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+}
 
 // Force AAPT2 to run in process instead of daemon (Proot Fix)
 tasks.withType(com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask).configureEach {
     it.doFirst {
-        // Disable AAPT2 daemon specifically for this task
         System.setProperty("android.aapt2.daemon.enabled", "false")
     }
 }
 
 android {
     aaptOptions {
-        // Force AAPT2 to run in process instead of daemon
         noCompress 'tflite'
         cruncherEnabled = false
     }
