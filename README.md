@@ -1,4 +1,4 @@
-# Android Monitor 📱
++# Android Monitor 📱
 
 A native Android application built with Java and C++ (JNI) for monitoring system activities.
 
